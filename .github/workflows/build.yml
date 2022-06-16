@@ -15,13 +15,6 @@ jobs:
 
       - run: choco install wget
 
-      - name: Download APXS
-        shell: bash
-        run: |
-          wget https://www.apachelounge.com/download/apxs_win32.zip
-          mkdir apxs
-          unzip -d apxs apxs_win32.zip
-
       - uses: ilammy/msvc-dev-cmd@v1
 
       - name: Build APXS
