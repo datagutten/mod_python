@@ -1,0 +1,22 @@
+This distribution contains scripts to install the utilities
+apxs, apr-config, and apu-config on Win32 for use with Apache2.
+To install, at a DOS prompt run
+   perl Configure.pl
+which will attempt to find your top-level Apache2 directory.
+If this is unsuccessful, or the guess is wrong, run
+   perl Configure.pl --with-apache2=\Path\to\Apache2
+The utilities will be placed under \Path\to\Apache2\bin\.
+
+If you are building for Apache 2.1-dev/2.2, you will discover
+that it's now httpd.exe, not Apache.exe. Specifying
+
+  perl Configure.pl --with-apache-prog=httpd.exe
+
+will provide the results you hoped for.
+
+Randy Kobes <randy@theoryx5.uwinnipeg.ca>
+
+Bill Rowe <wrowe rowe-clan.net> provided the fixes necessary
+for Apache 2.1-dev/2.2.
+
+July 22, 2005
