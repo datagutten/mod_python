@@ -16,8 +16,8 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
 
       - name: Build APXS
-        working-directory: ${{ github.workspace }}/apxs
-        run: perl -I. Configure.pl --with-apache2=${{ github.workspace }}/Apache24 --with-apache-prog=httpd.exe
+        working-directory: ${{ github.workspace }}\apxs_win32
+        run: perl -I. Configure.pl --with-apache2=${{ github.workspace }}\Apache24 --with-apache-prog=httpd.exe
 
       - uses: actions/checkout@v2
 
