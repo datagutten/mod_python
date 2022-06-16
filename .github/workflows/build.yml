@@ -20,11 +20,8 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Download Apache
-        shell: bash
-        run: |
-          wget https://www.apachelounge.com/download/VS16/binaries/httpd-2.4.54-win64-VS16.zip
-          unzip httpd-2.4.54-win64-VS16.zip
+      - name: Install Apahce
+        run: choco install apache-httpd /noService /installLocation:${{ github.workspace }}\Apache24
 
       - name: Download APXS
         shell: bash
