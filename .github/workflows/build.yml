@@ -13,8 +13,6 @@ jobs:
       - name: Install Apahce
         run: choco install apache-httpd --force --params '/noService /installLocation:${{ github.workspace }}\Apache24'
 
-      - run: choco install wget
-
       - uses: ilammy/msvc-dev-cmd@v1
 
       - name: Build APXS
@@ -30,6 +28,6 @@ jobs:
 
       - name: Build mod_python
         run: |
-          ./configure --with-apxs ${{ github.workspace }}/apxs
+          ./configure --with-apxs ${{ github.workspace }}\apxs_win32
           make
           make install
