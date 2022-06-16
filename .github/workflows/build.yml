@@ -21,7 +21,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install Apahce
-        run: choco install apache-httpd /noService /installLocation:${{ github.workspace }}\Apache24
+        run: choco install apache-httpd --params '/noService /installLocation:${{ github.workspace }}\Apache24'
 
       - name: Download APXS
         shell: bash
