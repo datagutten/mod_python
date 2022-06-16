@@ -10,18 +10,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: ilammy/msvc-dev-cmd@v1
-
-      - run: choco install wget
-
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.10'
-
       - name: Install Apahce
         run: choco install apache-httpd --params '/noService /installLocation:${{ github.workspace }}\Apache24'
+
+      - run: choco install wget
 
       - name: Download APXS
         shell: bash
@@ -30,9 +22,18 @@ jobs:
           mkdir apxs
           unzip -d apxs apxs_win32.zip
 
+      - uses: ilammy/msvc-dev-cmd@v1
+
       - name: Build APXS
         working-directory: ${{ github.workspace }}/apxs
         run: perl -I. Configure.pl --with-apache2=${{ github.workspace }}/Apache24 --with-apache-prog=httpd.exe
+
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
 
       - name: Build mod_python
         run: |
