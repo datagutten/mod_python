@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Install Apahce
-        run: choco install apache-httpd --params '/noService /installLocation:${{ github.workspace }}\Apache24'
+        run: choco install apache-httpd --force --params '/noService /installLocation:${{ github.workspace }}\Apache24'
 
       - run: choco install wget
 
