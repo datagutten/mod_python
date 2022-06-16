@@ -1,0 +1,42 @@
+name: Python build
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - uses: ilammy/msvc-dev-cmd@v1
+
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Download Apache
+        shell: bash
+        run: |
+          wget https://www.apachelounge.com/download/VS16/binaries/httpd-2.4.54-win64-VS16.zip
+          unzip httpd-2.4.54-win64-VS16.zip
+
+      - name: Download APXS
+        shell: bash
+        run: |
+          wget https://www.apachelounge.com/download/apxs_win32.zip
+          mkdir apxs
+          unzip -d apxs apxs_win32.zip
+
+      - name: Build APXS
+        working-directory: ${{ github.workspace }}/apxs
+        run: perl -I. Configure.pl --with-apache2=${{ github.workspace }}/Apache24 --with-apache-prog=httpd.exe
+
+      - name: Build mod_python
+        run: |
+          ./configure --with-apxs ${{ github.workspace }}/apxs
+          make
+          make install
