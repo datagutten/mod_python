@@ -28,6 +28,6 @@ jobs:
       - name: Build mod_python
         shell: bash
         run: |
-          ./configure --with-apxs ${{ github.workspace }}\apxs_win32
+          ./configure --with-apxs=${{ github.workspace }}/apxs_win32
           make
           make install
