@@ -10,8 +10,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Install Apahce
-        run: choco install apache-httpd --force --params '/noService /installLocation:${{ github.workspace }}\Apache24'
+      - run: unzip httpd-2.4.54-win64-VS16.zip
 
       - uses: ilammy/msvc-dev-cmd@v1
       - uses: actions/checkout@v2
