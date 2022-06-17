@@ -14,12 +14,11 @@ jobs:
         run: choco install apache-httpd --force --params '/noService /installLocation:${{ github.workspace }}\Apache24'
 
       - uses: ilammy/msvc-dev-cmd@v1
+      - uses: actions/checkout@v2
 
       - name: Build APXS
         working-directory: ${{ github.workspace }}\apxs_win32
         run: perl -I. Configure.pl --with-apache2=${{ github.workspace }}\Apache24 --with-apache-prog=httpd.exe
-
-      - uses: actions/checkout@v2
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
