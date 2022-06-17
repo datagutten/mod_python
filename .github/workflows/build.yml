@@ -10,10 +10,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - uses: actions/checkout@v2
       - run: unzip httpd-2.4.54-win64-VS16.zip
 
       - uses: ilammy/msvc-dev-cmd@v1
-      - uses: actions/checkout@v2
+
 
       - name: Build APXS
         working-directory: ${{ github.workspace }}\apxs_win32
